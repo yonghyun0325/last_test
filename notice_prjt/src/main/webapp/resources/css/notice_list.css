@@ -1,0 +1,53 @@
+/* 기본 스타일 */
+        .notice-container {
+            width: 80%;
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
+        }
+        
+        .filter-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        select, input[type="text"], button {
+            padding: 10px;
+            font-size: 14px;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+        
+        .tab.active {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .notice-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .notice-table th, .notice-table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .register-button {
+            float: right;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.human.notice.mapper.NoticeMapper">
+
+    <!-- 공지사항 전체 조회 -->
+    <select id="selectAllNotices" resultType="com.human.notice.vo.NoticeVO">
+        SELECT n_idx, n_category, n_title, n_content, n_regdate, n_update
+        FROM tb_notice
+        ORDER BY n_regdate DESC
+    </select>
+
+    <!-- 공지사항 검색 (제목, 내용, 제목+내용) -->
+    <select id="searchNotices" parameterType="com.human.notice.vo.SearchVO" resultType="com.human.notice.vo.NoticeVO">
+        SELECT n_idx, n_category, n_title, n_content, n_regdate, n_update
+        FROM tb_notice
+        WHERE 
+            <if test="searchType == 'title'">
+                n_title LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchType == 'content'">
+                n_content LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchType == 'titleContent'">
+                (n_title LIKE CONCAT('%', #{keyword}, '%') OR n_content LIKE CONCAT('%', #{keyword}, '%'))
+            </if>
+        ORDER BY n_regdate DESC
+    </select>
+
+    <!-- 공지사항 상세 조회 (ID로 조회) -->
+    <select id="selectNoticeById" parameterType="int" resultType="com.human.notice.vo.NoticeVO">
+        SELECT n_idx, n_category, n_title, n_content, n_regdate, n_update
+        FROM tb_notice
+        WHERE n_idx = #{n_idx}
+    </select>
+</mapper>
